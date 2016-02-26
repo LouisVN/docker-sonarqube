@@ -1,5 +1,5 @@
 FROM sonarqube
-MAINTAINER Christoph Papke <info@christoph-papke.de>
+MAINTAINER Christoph Papke <info@papke.it>
 
 # install additional packages
 RUN apt-get update && \
