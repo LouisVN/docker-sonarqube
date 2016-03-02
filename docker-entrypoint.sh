@@ -73,13 +73,14 @@ esac
 # wait for database port to be opened
 while ! nc -z $DB_HOST $DB_PORT; do sleep 1; done
 
-exec java -jar lib/sonar-application-$SONAR_VERSION.jar \
-  -Dsonar.log.console=true \
-  -Dsonar.jdbc.username="$DB_USER" \
-  -Dsonar.jdbc.password="$DB_PASS" \
-  -Dsonar.jdbc.url="$DB_URL" \
-  -Dsonar.web.context="$SONARQUBE_CONTEXT_PATH" \
-  -Dsonar.web.javaAdditionalOpts="$SONARQUBE_JAVA_OPTS -Djava.security.egd=file:/dev/./urandom" \
-	"$@"
+# start sonarqube application
+exec java -jar $SONARQUBE_HOME/lib/sonar-application-$SONARQUBE_VERSION.jar \
+     -Dsonar.log.console=true \
+     -Dsonar.jdbc.username="$DB_USER" \
+     -Dsonar.jdbc.password="$DB_PASS" \
+     -Dsonar.jdbc.url="$DB_URL" \
+     -Dsonar.web.context="$SONARQUBE_CONTEXT_PATH" \
+     -Dsonar.web.javaAdditionalOpts="-Djava.security.egd=file:/dev/./urandom $SONARQUBE_JAVA_OPTS" \
+     "$@"
 
 exec "$@"

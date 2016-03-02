@@ -1,12 +1,12 @@
 docker-sonarqube
 =============
 
-Sonarqube docker image based on Debian Jessie and Open JRE 8.
+Sonarqube docker image based on Debian Jessie and Oracle JDK 8.
 
 # Description
 This Sonarqube docker image contains the following software components:
 
- - [Open JRE 8](http://openjdk.java.net/)
+ - [Oracle JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
  - [Sonarqube](http://www.sonarqube.org/)
 
 For data storage you will need a relational database. At the moment, these databases are supported:
@@ -20,9 +20,6 @@ These tcp ports are exposed:
  - 9000 (Web frontend)
 
 # How to run the container
-
-## General information
-  - See: [Sonarqube base image](https://hub.docker.com/_/sonarqube/)
 
 ## Environment variables
 
