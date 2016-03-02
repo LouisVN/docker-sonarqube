@@ -73,6 +73,9 @@ esac
 # wait for database port to be opened
 while ! nc -z $DB_HOST $DB_PORT; do sleep 1; done
 
+# import trusted ssl certs into JRE keystore
+import-trusted-ssl-certs.sh
+
 # start sonarqube application
 exec java -jar $SONARQUBE_HOME/lib/sonar-application-$SONARQUBE_VERSION.jar \
      -Dsonar.log.console=true \
