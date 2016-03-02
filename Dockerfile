@@ -13,6 +13,9 @@ RUN wget https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-$SONAR
     ln -s /opt/sonarqube-$SONARQUBE_VERSION $SONARQUBE_HOME && \
     rm -f sonarqube-$SONARQUBE_VERSION.zip
 
+# remove unused directories
+RUN rm -rf $SONARQUBE_HOME/bin $SONARQUBE_HOME/conf
+
 # expose http port
 EXPOSE 9000
 
