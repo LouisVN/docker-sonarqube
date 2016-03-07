@@ -134,3 +134,9 @@ When you start the Sonarqube container, you can adjust the configuration by pass
   ```
   docker-compose up -d
   ```
+  
+## Advanced topics
+
+### Accept self signed SSL certificates from Sonarqube JRE
+
+See parent image: [chrisipa/java](https://github.com/chrisipa/docker-java#accept-self-signed-ssl-certificates-from-jre)
