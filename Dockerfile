@@ -14,13 +14,13 @@ RUN wget https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-$SONAR
     rm -f sonarqube-$SONARQUBE_VERSION.zip
 
 # remove unused folders
-RUN rm -rf $SONARQUBE_HOME/bin $SONARQUBE_HOME/conf
+RUN rm -rf $SONARQUBE_HOME/bin
 
 # expose http port
 EXPOSE 9000
 
 # specify volumes
-VOLUME ["$SONARQUBE_HOME/data", "$SONARQUBE_HOME/extensions"]
+VOLUME ["$SONARQUBE_HOME/conf", "$SONARQUBE_HOME/data", "$SONARQUBE_HOME/extensions"]
 
 # set SONARQUBE_HOME as work dir
 WORKDIR $SONARQUBE_HOME
