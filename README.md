@@ -124,6 +124,7 @@ When you start the Sonarqube container, you can adjust the configuration by pass
     ports:
       - 9000:9000
     volumes:
+      _ /opt/docker/sonarqube-app/conf:/opt/sonarqube/conf
       - /opt/docker/sonarqube-app/data:/opt/sonarqube/data
       - /opt/docker/sonarqube-app/extensions:/opt/sonarqube/extensions
     environment:
