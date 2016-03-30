@@ -1,7 +1,7 @@
 mysql:
   image: mysql
   volumes:
-    - /opt/docker/sonarqube-mysql:/var/lib/mysql
+    - /opt/docker/sonarqube/mysql:/var/lib/mysql
   environment:
     - MYSQL_ROOT_PASSWORD=my-root-password
     - MYSQL_DATABASE=sonarqube
@@ -15,8 +15,8 @@ sonarqube:
   ports:
     - 9000:9000
   volumes:
-    - /opt/docker/sonarqube-app/conf:/opt/sonarqube/conf
-    - /opt/docker/sonarqube-app/data:/opt/sonarqube/data
-    - /opt/docker/sonarqube-app/extensions:/opt/sonarqube/extensions
+    - /opt/docker/sonarqube/app/conf:/opt/sonarqube/conf
+    - /opt/docker/sonarqube/app/data:/opt/sonarqube/data
+    - /opt/docker/sonarqube/app/extensions:/opt/sonarqube/extensions
   environment:
     - SONARQUBE_CONTEXT_PATH=/sonar
