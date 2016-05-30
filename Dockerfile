@@ -20,7 +20,7 @@ RUN rm -rf $SONARQUBE_HOME/bin
 EXPOSE 9000
 
 # specify volumes
-VOLUME ["$SONARQUBE_HOME/conf", "$SONARQUBE_HOME/data", "$SONARQUBE_HOME/extensions"]
+VOLUME ["$SONARQUBE_HOME/conf", "$SONARQUBE_HOME/data", "$SONARQUBE_HOME/extensions", "$SONARQUBE_HOME/logs"]
 
 # set SONARQUBE_HOME as work dir
 WORKDIR $SONARQUBE_HOME

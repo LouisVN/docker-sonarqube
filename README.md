@@ -115,6 +115,7 @@ When you start the Sonarqube container, you can adjust the configuration by pass
       - /opt/docker/sonarqube/app/conf:/opt/sonarqube/conf
       - /opt/docker/sonarqube/app/data:/opt/sonarqube/data
       - /opt/docker/sonarqube/app/extensions:/opt/sonarqube/extensions
+      - /opt/docker/sonarqube/app/logs:/opt/sonarqube/logs
     environment:
       - SONARQUBE_CONTEXT_PATH=/sonar
   ```
