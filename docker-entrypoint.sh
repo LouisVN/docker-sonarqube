@@ -1,60 +1,24 @@
 #!/bin/bash
+
 set -e
 
-if [ -z $DB_TYPE ]
-then
-	DB_TYPE="mysql"
-fi
+# ------------------------------------------------------------------------
+# # function for getting the value of a database environment variable
+# ------------------------------------------------------------------------
+# $1 - Pattern to search for
+# ------------------------------------------------------------------------
+function get_db_env_var() {
+    local PATTERN="$1"
+    echo "$(env | grep $PATTERN | head -n 1 | awk -F= '{print $2}')"
+}
 
-if [ -z $DB_HOST ]
-then
-	if [ -n "$MYSQL_PORT_3306_TCP_ADDR" ]
-	then
-		DB_HOST="$MYSQL_PORT_3306_TCP_ADDR"
-	else 
-		DB_HOST="sonarqube-mysql"
-	fi
-fi
-
-if [ -z $DB_PORT ]
-then
-	if [ -n "$MYSQL_PORT_3306_TCP_PORT" ]
-	then 
-		DB_PORT="$MYSQL_PORT_3306_TCP_PORT"
-	else
-		DB_PORT="3306"
-	fi 
-fi
-
-if [ -z $DB_NAME ]
-then 
-	if [ -n "$MYSQL_ENV_MYSQL_DATABASE" ]
-	then
-		DB_NAME="$MYSQL_ENV_MYSQL_DATABASE"
-	else
-		DB_NAME="sonarqube"
-	fi
-fi
-
-if [ -z $DB_USER ]
-then 
-	if [ -n "$MYSQL_ENV_MYSQL_USER" ]
-	then
-		DB_USER="$MYSQL_ENV_MYSQL_USER"
-	else
-		DB_USER="sonarqube"
-	fi
-fi
-
-if [ -z $DB_PASS ]
-then 
-	if [ -n "$MYSQL_ENV_MYSQL_PASSWORD" ]
-	then
-		DB_PASS="$MYSQL_ENV_MYSQL_PASSWORD"
-	else
-		DB_PASS="my-password"
-	fi
-fi
+# set defaults for database
+if [ -z $DB_TYPE ] ; then export DB_TYPE="mysql" ; fi
+if [ -z $DB_HOST ] ; then export DB_HOST="$(get_db_env_var 'PORT_3306_TCP_ADDR')" ; fi
+if [ -z $DB_PORT ] ; then export DB_PORT="$(get_db_env_var 'PORT_3306_TCP_PORT')" ; fi
+if [ -z $DB_NAME ] ; then export DB_NAME="$(get_db_env_var 'MYSQL_DATABASE')" ; fi
+if [ -z $DB_USER ] ; then export DB_USER="$(get_db_env_var 'MYSQL_USER')" ; fi
+if [ -z $DB_PASS ] ; then export DB_PASS="$(get_db_env_var 'MYSQL_PASSWORD')" ; fi
 
 # set db dialect and db driver class name by db type
 case "$DB_TYPE" in
